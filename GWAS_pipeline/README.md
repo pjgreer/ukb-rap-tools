@@ -20,3 +20,7 @@ FInally, 'GWAS using WES dataset with regenie' workflow requires 'genotype file 
 
 Two scripts are repeated to make each workflow semi-selfcontained. If you are planning to run GWAS on the imputed dataset using both regenie and plink, the QC filter script "11a-gwas-s2-imp37-qc-filter.sh" only needs to be run once. The same for "11b-gwas-s2-wes38-qc-filter.sh" in the wgat using WES data folders. 
 
+The phenotype and covariate files for regenie must code missing data as NA
+
+The phenotype and covariate files for plink must code missing data as -9
+
