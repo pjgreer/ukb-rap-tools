@@ -1,3 +1,5 @@
+# Prepare GT array data for regenie step 1
+
 This is the very first step if you plan to run regeneie on the DNANexus UKB RAP. If you are planning to run a GWAS on the WES or WGS data, you will proceed to the GTprep liftover section. IF you are planning to run regenie on the imputed dataset which is in grch37, you can skip the liftover step. If you only plan to run plink, you do not need to run this step at all.
 
 What these script actually do:
