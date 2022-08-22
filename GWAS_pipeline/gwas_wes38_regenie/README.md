@@ -1,4 +1,4 @@
-# perfomrning GWAS on WES data using Regenie
+# Performing GWAS on WES data using Regenie
 
 You must have run all the steps in GTfile-prep and GTfile-liftover prior to running these scripts.
 
