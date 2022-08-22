@@ -2,9 +2,9 @@
  
  I probably made this too complex, but while working these out, several sections rely on a prior section in order to run properly.
  
- There are 6 seperate parts:
+ There are 6 seperate parts please see the README in each folder for a full description of each step:
  
- 1. genotype file preparation
+ 1. genotype file preparation 
  2. genotype file liftover to grch38
  3. GWAS using imputed dataset with plink
  4. GWAS using imputed dataset with regenie
