@@ -24,3 +24,4 @@ The phenotype and covariate files for regenie must code missing data as NA
 
 The phenotype and covariate files for plink must code missing data as -9
 
+The plink and gengenie gwas commands assume a binary phenotype 0=control, 1=case. The plink command should be changed to --glm or --linear for a continuous phenotype.
