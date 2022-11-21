@@ -11,7 +11,7 @@ This set of scripts will:
 
 The first script runs the cohort and QC filter on the WES data using plink and unix tools. Rvtests requires a bgzipped vcf file with the "chr" suffiz removed. Depending on the total number of subjects in your phenotypes file, you will have to adjust the size of the vm and more specifically the total storage of the VM. I am using ~34,000 subjects allowing me to get away with using smaller vms with <1TB of ssd storage.  
 
-The second script runs rvtest on the output of script 1 (QC-passed WES vcf files) It uses the QC-ed WES vcf files along with a set of GRCh38 GENE reference files (available in this repo) and pre-made pheotype and covariate files (made prior).
+The second script runs rvtest on the output of script 1 (QC-passed WES vcf files) It uses the QC-ed WES vcf files along with a set of GRCh38 GENE reference files (available here: https://github.com/pjgreer/ukb-rap-tools/blob/4da5852da99a031d37da3a6fd6a6e5cc66b24060/rare_var_wes/refFlat38.zip) and pre-made pheotype and covariate files (made prior).
 
 You must upload the refFlat*.gz files to the UKB-RAP prior to running this script. I uploaded them to a subfolder of my {txt_file_dir} names reflat38.
 
