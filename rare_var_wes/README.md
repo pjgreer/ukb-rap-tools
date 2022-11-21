@@ -1,4 +1,4 @@
-# WES Rarevariant tests in UKBiobank 
+# WES Rare variant tests in UKBiobank 
 
 As with the GWAS scripts, I assume that you have a valid phenotype and covariate file.
 
@@ -6,7 +6,7 @@ If you have never used rvtests please see the documentation here: http://zhanxw.
 
 This set of scripts will:
 1. Prepare the WES data for rvtests
-2. Run the rarevariant tests for each chromosome
+2. Run the rare variant tests (Skat, SkatO, and burden) for each chromosome
 3. Collect the data for simple download
 
 The first script runs the cohort and QC filter on the WES data using plink and unix tools. Rvtests requires a bgzipped vcf file with the "chr" suffiz removed. Depending on the total number of subjects in your phenotypes file, you will have to adjust the size of the vm and more specifically the total storage of the VM. I am using ~34,000 subjects allowing me to get away with using smaller vms with <1TB of ssd storage.  
