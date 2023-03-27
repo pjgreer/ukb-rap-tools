@@ -2,7 +2,7 @@
 Scripts and workflows for use analyzing UK Biobank data from the DNANexus Research Analysis Platform
 
 Most will be written in bash and will interact with the dx tools.
-unless stated otherwise, these scripts will be executed on your local machine.
+Unless stated otherwise, these scripts will be executed on your local machine.
 
 ## Prerequisites:
 1. Base prerequisites from the main folder
@@ -17,4 +17,5 @@ unless stated otherwise, these scripts will be executed on your local machine.
 5. All four .txt files must ne uploaded to the RAP
 
 
+One last thing of note, this works for single SNPs but not currently for complex haplotypes or dyplotypes. Also, some SNPs may have may be multiallelic. Most multiallelic SNPs have the extra alleles with very small allele frequencies. filtering the dataset with an MAF of 0.01 will remove them from the dataset. 
 
