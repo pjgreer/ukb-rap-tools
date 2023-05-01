@@ -14,7 +14,7 @@ Unless stated otherwise, these scripts will be executed on your local machine.
 	awk '{ if (NR>1) { print $1 }}' ex_prsfile.txt > rsidlist.txt
 	awk '{ print $1, $4, $6 }' ex_prsfile.txt > scorefile.txt
 ```
-5. All four .txt files must ne uploaded to the RAP
+5. All four .txt files must be uploaded to the RAP
 
 
 One last thing of note, this works for single SNPs but not currently for complex haplotypes or dyplotypes. Also, some SNPs may have may be multiallelic. Most multiallelic SNPs have the extra alleles with very small allele frequencies. filtering the dataset with an MAF of 0.01 will remove them from the dataset. 
