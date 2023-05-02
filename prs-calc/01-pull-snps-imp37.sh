@@ -33,19 +33,25 @@
 imp_file_dir="/Bulk/Imputation/UKB imputation from genotype/"
 #set this to the imputed data field for your release
 data_field="ukb22828"
-data_file_dir="/data/imp37_prsfiles/"
+#data_file_dir="/data/imp37_prsfiles/"
+data_file_dir="/data/imp37_prsfiles_pdac/"
 txt_file_dir="/prs_textfiles/"
+
+#rsidlist="rsidlist.txt"
+rsidlist="pgs002264_rsidlist.txt"
+#chr_pos_file="chrposlist.txt"
+chr_pos_file="pgs002264_chrposlist.txt"
 
 
 # loop over each autosomal chromosome
 
 for i in {1..22}; do
-    run_snps="bgenix -g ${data_field}_c${i}_b0_v3.bgen -incl-rsids rsidlist.txt -incl-range chrposlist.txt > chr_${i}.bgen"
+    run_snps="bgenix -g ${data_field}_c${i}_b0_v3.bgen -incl-rsids ${rsidlist} -incl-range ${chr_pos_file} > chr_${i}.bgen"
 
     dx run swiss-army-knife -iin="${imp_file_dir}/${data_field}_c${i}_b0_v3.bgen" \
      -iin="${imp_file_dir}/${data_field}_c${i}_b0_v3.sample" \
      -iin="${imp_file_dir}/${data_field}_c${i}_b0_v3.bgen.bgi" \
-     -iin="${txt_file_dir}/rsidlist.txt" -iin="/${txt_file_dir}/chrposlist.txt" \
+     -iin="${txt_file_dir}/${rsidlist}" -iin="/${txt_file_dir}/${chr_pos_file}" \
      -icmd="${run_snps}" --tag="SelectSNPs" --instance-type "mem2_ssd2_v2_x16"\
      --destination="${project}:${data_file_dir}" --brief --yes
 

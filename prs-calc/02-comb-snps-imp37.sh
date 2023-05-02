@@ -41,27 +41,37 @@ imp_file_dir="/Bulk/Imputation/UKB imputation from genotype/"
 exome_file_dir="/Bulk/Exome sequences/Population level exome OQFE variants, PLINK format - final release/"
 #set this to the exome data field for your release
 data_field="ukb22828"
-data_file_dir="/data/imp37_prsfiles/"
+#data_file_dir="/data/imp37_prsfiles/"
+data_file_dir="/data/imp37_prsfiles_pdac/"
 txt_file_dir="/prs_textfiles/"
 
+#prs_out="ex_prs"
+#prsfile="ex_prsfile.txt"
+#scorefile="scorefile.txt"
+
+prsout="pgs002264_pdac"
+prsfile="PGS002264_PDAC_GRCh37.txt"
+scorefile="pgs002264_scorefile.txt"
 
 
   combine_snps='
+      # build list of bgen files
+      cmd=""; for i in {1..22}; do cmd=$cmd"/mnt/project/data/imp37_prsfiles_pdac/chr_${i}.bgen "; done
       # Combine the .bgen files for each chromosome into one
-      cat-bgen -g  /mnt/project/data/imp37_prsfiles/*.bgen -og initial_chr.bgen -clobber
+      cat-bgen -g $cmd -og initial_chr.bgen -clobber
       # Write index file .bgen.bgi
       bgenix -g initial_chr.bgen -index -clobber
       # convert to plinkformat
-      plink2 --bgen initial_chr.bgen ref-first --sample ukb22828_c1_b0_v3.sample --freq --maf 0.01 --make-pgen --out ukb-select-all
-      # calculate prs score 
-      plink2 --pfile ukb-select-all --score scorefile.txt no-mean-imputation list-variants cols=maybefid,nallele,denom,dosagesum,scoreavgs,scoresums --out ex_score
+      plink2 --bgen initial_chr.bgen ref-first --sample ukb22828_c1_b0_v3.sample --freq --maf 0.01 --make-pgen --sort-vars --out ukb-select-all
+      # calculate prs score
+      plink2 --pfile ukb-select-all --score '"${scorefile}"' no-mean-imputation list-variants cols=maybefid,nallele,denom,dosagesum,scoreavgs,scoresums --out '"${prsout}"'
       # write out raw file
-      plink2 --pfile ukb-select-all --out ex_rawfile --extract ex_prsfile.txt --export A --alt1-allele force ex_prsfile.txt 5 --ref-allele force ex_prsfile.txt 4
+      plink2 --pfile ukb-select-all --out '"${prsout}"' --extract '"${prsfile}"' --export A --alt1-allele force '"${prsfile}"' 5 --ref-allele force '"${prsfile}"' 4
 '
 
 
     dx run swiss-army-knife -iin="${imp_file_dir}/${data_field}_c1_b0_v3.sample" \
-     -iin="${txt_file_dir}/scorefile.txt" -iin="${txt_file_dir}/ex_prsfile.txt" \
+     -iin="${txt_file_dir}/${scorefile}" -iin="${txt_file_dir}/${prsfile}" \
      -icmd="${combine_snps}" --tag="CombSNPs" --instance-type "mem2_ssd2_v2_x16" \
      --destination="${project}:${data_file_dir}" --brief --yes
 
