@@ -42,7 +42,7 @@ txt_file_dir="/gwas_cohort_textfiles/"
 for i in {1..22}; do
     run_plink_wes="plink2 --bfile ${data_field}_c${i}_b0_v1\
       --no-pheno --keep phenotypes.v08-04-22.txt \
-      --maf 0.0005 --mac 20 --geno 0.1 --mind 0.1 --maf-max 0.9995 \
+      --maf 0.0005 --mac 20 --geno 0.1 --mind 0.1 --max-maf 0.9995 \
       --write-snplist --write-samples --no-id-header\
       --out WES_c${i}_snps_qc_pass"
 
@@ -57,7 +57,7 @@ done
 
     run_plink_wes="plink2 --bfile ${data_field}_cX_b0_v1\
       --no-pheno --keep phenotypes.v08-04-22.txt \
-      --maf 0.0005 --mac 20 --geno 0.1  --mind 0.1 --maf-max 0.9995 \
+      --maf 0.0005 --mac 20 --geno 0.1  --mind 0.1 --max-maf 0.9995 \
       --write-snplist --write-samples --no-id-header\
       --out WES_cX_snps_qc_pass"
     

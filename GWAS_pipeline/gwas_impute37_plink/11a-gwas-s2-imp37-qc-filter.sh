@@ -46,7 +46,7 @@ for i in {1..22}; do
       --make-pgen --out ukbi_ch${i}_v3; \
     plink2 --pfile ukbi_ch${i}_v3 \
       --no-pheno --keep phenotypes.v08-04-22.txt \
-      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 --maf-max 0.994 \
+      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 --max-maf 0.994 \
       --make-bed --out ${data_field}_c${i}_v3; \
      rm ukbi_ch${i}_v3* "
 
@@ -64,7 +64,7 @@ done
       --make-pgen --out ukbi_chX_v3; \
     plink2 --pfile ukbi_chX_v3 \
       --no-pheno --keep phenotypes.v08-04-22.txt \
-      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 --maf-max 0.994 \
+      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 --maf=x-maf 0.994 \
       --make-bed --out ${data_field}_cX_v3; \
      rm ukbi_chX_v3* "
     
