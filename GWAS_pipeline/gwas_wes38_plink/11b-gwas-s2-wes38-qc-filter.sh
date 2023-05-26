@@ -15,7 +15,7 @@
 
 # Inputs:
 # Note that you can adjust the output directory by setting the data_file_dir variable
-# - /gwas_cohort_textfiles/phenotypes.v08-04-22.tx - from part A (please refer to notebook & slides)
+# - /gwas_cohort_textfiles/phenotypes.v08-04-22.tx - (outside of scope)
 
 # for each chromosome, you will run a separate worker
 # - /{exome_file_dir}/ukb23158_c1_b0_v1.bed 
@@ -24,7 +24,7 @@
 
 # Outputs (for each chromosome):
 # - /data/ap_wes_gwas/WES_c1_snps_qc_pass.id  
-# - /data/ap_wes_gwas/WES_c1_snps_qc_pass.snplist - used in Part F 
+# - /data/ap_wes_gwas/WES_c1_snps_qc_pass.snplist 
 # - /data/ap_wes_gwas/WES_c1_snps_qc_pass.log
 
 # Steps:
@@ -42,7 +42,7 @@ txt_file_dir="/gwas_cohort_textfiles/"
 for i in {1..22}; do
     run_plink_wes="plink2 --bfile ${data_field}_c${i}_b0_v1\
       --no-pheno --keep phenotypes.v08-04-22.txt \
-      --maf 0.0005 --mac 20 --geno 0.1 --mind 0.1\
+      --maf 0.0005 --mac 20 --geno 0.1 --mind 0.1 --maf-max 0.9995 \
       --write-snplist --write-samples --no-id-header\
       --out WES_c${i}_snps_qc_pass"
 
@@ -57,7 +57,7 @@ done
 
     run_plink_wes="plink2 --bfile ${data_field}_cX_b0_v1\
       --no-pheno --keep phenotypes.v08-04-22.txt \
-      --maf 0.0005 --mac 20 --geno 0.1  --mind 0.1\
+      --maf 0.0005 --mac 20 --geno 0.1  --mind 0.1 --maf-max 0.9995 \
       --write-snplist --write-samples --no-id-header\
       --out WES_cX_snps_qc_pass"
     

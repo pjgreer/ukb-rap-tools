@@ -5,8 +5,7 @@
 # Requirements: 
 # 0-4 - please refer to readme.md
 # 5. Must have executed: 
-# - scripts 1-3  from partA_prep_gtfile_4_GWAS
-# 
+# 	- This the first script in a standalone workflow
 
 
 # How to Run:
@@ -16,7 +15,7 @@
 
 # Inputs:
 # Note that you can adjust the output directory by setting the data_file_dir variable
-# - /gwas_cohort_textfiles/phenotypes.v08-04-22.tx - from part A (please refer to notebook & slides)
+# - /gwas_cohort_textfiles/phenotypes.v08-04-22.txt - (outside of scope)
 
 # for each chromosome, you will run a separate worker
 # - /{imp_file_dir}/ukb22828_c1_b0_v3.bgen 
@@ -47,7 +46,7 @@ for i in {1..22}; do
       --make-pgen --out ukbi_ch${i}_v3; \
     plink2 --pfile ukbi_ch${i}_v3 \
       --no-pheno --keep phenotypes.v08-04-22.txt \
-      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 \
+      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 --maf-max 0.994 \
       --make-bed --out ${data_field}_c${i}_v3; \
      rm ukbi_ch${i}_v3* "
 
@@ -65,7 +64,7 @@ done
       --make-pgen --out ukbi_chX_v3; \
     plink2 --pfile ukbi_chX_v3 \
       --no-pheno --keep phenotypes.v08-04-22.txt \
-      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 \
+      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 --maf-max 0.994 \
       --make-bed --out ${data_field}_cX_v3; \
      rm ukbi_chX_v3* "
     

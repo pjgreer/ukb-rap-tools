@@ -1,23 +1,21 @@
 #!/bin/bash
 
-# This script runs the step2 analysis for regenie on WES data.
+# This script runs the logistic regression GWAS using plink2 on WES data.
 
 # Requirements: 
 # 0-4 - please refer to readme.md
 # 5. Must have executed: 
-# - all scripts including liftover from 01_prep_gtfile_4_GWAS
-# - 09b-step1-regenie.sh
 # - 11b-gwas-s2-wes38-qc-filter.sh
 
 # How to Run:
 # Run this shell script using: 
-#   sh 12b-gwas-s2-wes38-regenie.sh
+#   sh 15b-gwas-plink-wes.sh  
 # on the command line on your own machine
 
 # Inputs:
 # Note that you can adjust the output directory by setting the data_file_dir variable
-# - /gwas_cohort_textfiles/phenotypes.v08-01-22.txt - from part A (please refer to notebook & slides)
-# - /gwas_cohort_textfiles/covariates.v08-01-22.txt - from part A (please refer to notebook & slides)
+# - /gwas_cohort_textfiles/phenotypes.v08-01-22.txt -  (outside of scope)
+# - /gwas_cohort_textfiles/covariates.v08-01-22.txt -  (outside of scope)
 
 # Additional inputs
 # for each chromosome, you will run a separate worker
@@ -26,13 +24,12 @@
 # - /{data_file_dir}/ukb23158_c1_v3.fam 
 
 # Outputs (for each chromosome):
-# - /data/ap_wes_gwas/assoc.c1_AP.regenie.gz - regenie results for chromosome 1 
-# note that if you have multiple phenotypes, you will have a .regenie.gz for each phenotype
-# - /data/ap_wes_gwas/assoc.c1.log  - regenie log for chromosome 1
+# - /data/ap_wes_gwas/plink/ukb23158_AP_c1_v1.AP.glm.logistic.hybrid - plink results for chromosome 1 
+# - /data/ap_wes_gwas/plink/ukb23158_AP_c1_v1.log  - plink log for chromosome 1
 
 # Steps:
 # 1. for each chromosome 1-22 and X:
-#       - run regenie 
+#       - run logistic regression using plink 
 
 
 exome_file_dir="/Bulk/Exome sequences/Population level exome OQFE variants, PLINK format - final release/"
