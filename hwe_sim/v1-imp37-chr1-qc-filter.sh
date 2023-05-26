@@ -17,7 +17,7 @@
 # Inputs:
 # Note that you can adjust the output directory by setting the data_file_dir variable
 
-# for each chromosome, you will run a separate worker
+# for chromosome 1
 # - /{imp_file_dir}/ukb22828_c1_b0_v3.bgen 
 # - /{imp_file_dir}/ukb22828_c1_b0_v3.sample
 
@@ -52,16 +52,16 @@ txt_file_dir="/gwas_cohort_textfiles"
 # this is the upper maf bound in plink2, but does not affect the results much
 
 
-    run_plink_impX="plink2 --bgen ${data_field}_c1_b0_v3.bgen ref-first\
+    run_plink_hsim="plink2 --bgen ${data_field}_c1_b0_v3.bgen ref-first \
       --sample ${data_field}_c1_b0_v3.sample \
       --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 \
-      --make-pgen --out ukbi_ch1_v3 
+      --make-pgen --out ukbi_ch1_v3 ; \
     plink2 --pfile ukbi_ch1_v3 --freq --missing --no-psam-pheno \
       --hardy --out ${data_field}_c1_v3_all "
     
     dx run swiss-army-knife -iin="${imp_file_dir}/${data_field}_c1_b0_v3.bgen" \
      -iin="${imp_file_dir}/${data_field}_c1_b0_v3.sample" \
-     -icmd="${run_plink_impX}" --tag="qc-test" --instance-type "mem2_ssd1_v2_x32"\
+     -icmd="${run_plink_hsim}" --tag="qc-test" --instance-type "mem2_ssd1_v2_x32"\
      --destination="${project}:/data/qc_test" --brief --yes
 
 
