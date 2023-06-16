@@ -41,23 +41,23 @@ data_field="ukb21007"
 data_file_dir="/data/topmed_gwas"
 txt_file_dir="/gwas_cohort_textfiles"
 
-#for i in {1..22}; do
-#    run_plink_imp="sed 's/0 0 0 0/0 0 0 D/g' ${data_field}_c${i}_b0_v1.sample > ${data_field}_c${i}_b0.1_v1.sample; \
-#    plink2 --bgen ${data_field}_c${i}_b0_v1.bgen ref-first \
-#      --sample ${data_field}_c${i}_b0.1_v1.sample --set-missing-var-ids @:#:'\$r':'\$a' \
-#      --new-id-max-allele-len 99 truncate --make-pgen --out ukbi_ch${i}_v1; \
-#    plink2 --pfile ukbi_ch${i}_v1 \
-#      --no-pheno --keep phenotypes.v03-15-23.txt \
-#      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 --max-maf 0.994 \
-#      --make-pgen --out ${data_field}_c${i}_v1.1; \
-#     rm ukbi_ch${i}_v1* "
+for i in {1..22}; do
+    run_plink_imp="sed 's/0 0 0 0/0 0 0 D/g' ${data_field}_c${i}_b0_v1.sample > ${data_field}_c${i}_b0.1_v1.sample; \
+    plink2 --bgen ${data_field}_c${i}_b0_v1.bgen ref-first \
+      --sample ${data_field}_c${i}_b0.1_v1.sample --set-missing-var-ids @:#:'\$r':'\$a' \
+      --new-id-max-allele-len 99 truncate --make-pgen --out ukbi_ch${i}_v1; \
+    plink2 --pfile ukbi_ch${i}_v1 \
+      --no-pheno --keep phenotypes.v03-15-23.txt \
+      --maf 0.006 --mac 20 --geno 0.1 --mind 0.1 --max-maf 0.994 \
+      --make-pgen --out ${data_field}_c${i}_v1.1; \
+     rm ukbi_ch${i}_v1* "
 
-#    dx run swiss-army-knife -iin="${imp_file_dir}/${data_field}_c${i}_b0_v1.bgen" \
-#     -iin="${imp_file_dir}/${data_field}_c${i}_b0_v1.sample" \
-#     -iin="${txt_file_dir}/phenotypes.v03-15-23.txt" \
-#     -icmd="${run_plink_imp}" --tag="Step2" --instance-type "mem2_ssd2_v2_x16"\
-#     --destination="${project}:/data/topmed_gwas" --brief --yes 
-#done
+    dx run swiss-army-knife -iin="${imp_file_dir}/${data_field}_c${i}_b0_v1.bgen" \
+     -iin="${imp_file_dir}/${data_field}_c${i}_b0_v1.sample" \
+     -iin="${txt_file_dir}/phenotypes.v03-15-23.txt" \
+     -icmd="${run_plink_imp}" --tag="Step2" --instance-type "mem2_ssd2_v2_x16"\
+     --destination="${project}:/data/topmed_gwas" --brief --yes 
+done
 
 
 # now run chrX
