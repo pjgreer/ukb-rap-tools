@@ -49,7 +49,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples1k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 1000 >> samples1k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno --keep samples1k_${i}.txt  \
        --hardy --freq --out ${data_field}_c1_v3_1k_${i} "
     
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -67,7 +67,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples5k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 5000 >> samples5k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno --keep samples5k_${i}.txt  \
        --hardy --freq --out ${data_field}_c1_v3_5k_${i} "
 
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -85,7 +85,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples10k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 10000 >> samples10k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno --keep samples10k_${i}.txt  \
        --hardy --freq --out ${data_field}_c1_v3_10k_${i} "
 
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -103,7 +103,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples20k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 20000 >> samples20k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno --keep samples20k_${i}.txt  \
        --hardy --freq --out ${data_field}_c1_v3_20k_${i} "
     
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -121,7 +121,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples40k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 40000 >> samples40k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno  --keep samples40k_${i}.txt \
        --hardy --freq --out ${data_field}_c1_v3_40k_${i} "
 
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -139,7 +139,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples70k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 70000 >> samples70k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno  --keep samples70k_${i}.txt \
        --hardy --freq --out ${data_field}_c1_v3_70k_${i} "
      
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -157,7 +157,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples100k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 100000 >> samples100k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno  --keep samples100k_${i}.txt \
        --hardy --freq --out ${data_field}_c1_v3_100k_${i} "
     
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -175,7 +175,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples150k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 150000 >> samples150k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno  --keep samples150k_${i}.txt \
        --hardy --freq --out ${data_field}_c1_v3_150k_${i} "
      
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -193,7 +193,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples200k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 200000 >> samples200k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno  --keep samples200k_${i}.txt \
        --hardy --freq --out ${data_field}_c1_v3_200k_${i} "
      
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -211,7 +211,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples300k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 300000 >> samples300k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno  --keep samples300k_${i}.txt \
        --hardy --freq --out ${data_field}_c1_v3_300k_${i} "
      
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \
@@ -229,7 +229,7 @@ for i in {1..10}; do
     run_plink_hwesim="sudo apt-get -y install coreutils; \
      echo -e 'IID' > samples400k_${i}.txt; \
      awk '{if (NR>1) {print $2}}' ukbi_ch1_v3.psam | shuf -n 400000 >> samples400k_${i}.txt ; \
-     plink2 --pfile ukbi_ch1_v3 --no-pheno  \
+     plink2 --pfile ukbi_ch1_v3 --no-pheno  --keep samples400k_${i}.txt \
        --hardy --freq --out ${data_field}_c1_v3_400k_${i} "
      
     dx run swiss-army-knife -iin="${data_file_dir}/ukbi_ch1_v3.psam" \

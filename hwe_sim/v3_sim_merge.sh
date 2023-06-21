@@ -49,7 +49,7 @@ for i in {1,5,10,20,40,70,100,150,200,300,400}; do
 
    echo -e "RUN\tID\tA1\tAX\tHOM_A1_CT\tHET_A1_CT\tTWO_AX_CT\tO(HET_A1)\tE(HET_A1)\tP" > ukb22828_c1_v3_${i}k_all.hardy
 
-   for g in {1..10}; do awk -v qqq="$ikp15_$g"  '"'"'NR>=2 { print qqq,"\t" $2,"\t" $3,"\t" $4,"\t" $5,"\t" $6,"\t" $7,"\t" $8,"\t" $9,"\t" $10 }'"'"'  /mnt/project/data/qc_test/ukb22828_c1_v3_${i}k_${g}.hardy >> ukb22828_c1_v3_${i}k_all.hardy ; done 
+   for g in {1..10}; do awk -v qqq="$ik_$g"  '"'"'NR>=2 { print qqq,"\t" $2,"\t" $3,"\t" $4,"\t" $5,"\t" $6,"\t" $7,"\t" $8,"\t" $9,"\t" $10 }'"'"'  /mnt/project/data/qc_test/ukb22828_c1_v3_${i}k_${g}.hardy >> ukb22828_c1_v3_${i}k_all.hardy ; done 
 
 done '
 
