@@ -1,7 +1,7 @@
 
 # Running liftover from grch37 to grch38 using picard.
 
-Again, this is only needed if you plan on running regenie on WES and WGS data. 
+Again, this is only needed if you plan on running regenie on WES, WGS, or the new TOPMED or GEL imputed data. 
 
 You must have run all the steps in GTfile-prep prior to running these scripts.
 
