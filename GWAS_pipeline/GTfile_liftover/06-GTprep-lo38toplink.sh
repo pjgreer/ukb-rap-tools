@@ -20,7 +20,6 @@
 # Inputs: 
 # - /data/gt_genrel_block/ukb_gt_lo38_sort.vcf.gz
 # - /data/gt_genrel_block/ukb22418_allQC_v2_mrg_prun_cohort.fam 
-# - /gwas_cohort_textfiles/phenotypes.v08-04-22.txt
 
 # Output:
 # - /data/gt_genrel_block/ukb22418_allQC_mrg_prnd_cohort_lo38_v3.bed
@@ -57,6 +56,5 @@ plink2 --bfile ${data_field}_allQC_mrg_prnd_cohort_lo38_v2 --exclude remove_losn
 
 dx run swiss-army-knife -iin="${data_file_dir}/ukb_gt_lo38_sort.vcf.gz" \
    -iin="${data_file_dir}/${data_field}_allQC_v2_mrg_prun_cohort.fam"\
-   -iin="${txt_file_dir}/phenotypes.v08-04-22.txt" \
    -icmd="${run_plink_qc}" --tag="Step1" --instance-type "mem2_ssd1_v2_x16"\
    --destination="${project}:/data/gt_genrel_block/" --brief --yes
