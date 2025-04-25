@@ -35,44 +35,46 @@
 exome_file_dir="/Bulk/Exome sequences/Population level exome OQFE variants, PLINK format - final release/"
 #set this to the exome data field for your release
 data_field="ukb23158"
-data_file_dir="/data/ap_wes_gwas/"
+data_file_dir="/data/wes_gwas/"
 txt_file_dir="/gwas_cohort_textfiles/"
+phenotype_file="phenotypes.v04-24-25.txt"
+covariates_file="covariates.v04-24-25.txt"
 
 
 for i in {1..22}; do
 
   run_plink_imp="plink2 --bfile ${data_field}_c${i}_b0_v1 --1 \
-      --extract WES_c${i}_snps_qc_pass.snplist \
-      --pheno phenotypes.v08-01-22.txt --pheno-name AP \
-      --covar covariates.v08-01-22.txt --covar-name age,bmi,smoke,pca1-pca6 \
-      --logistic sex hide-covar --out ${data_field}_AP_c${i}_v1"
+      --extract WES_c${i}_snps_qc_pass.snplist --neg9-pheno-really-missing \
+      --pheno ${phenotype_file} --pheno-name CP \
+      --covar ${covariates_file} --covar-name age,bmi,smoke,pca1-pca6 \
+      --logistic sex hide-covar --out ${data_field}_CP_c${i}_v1"
 
 
   dx run swiss-army-knife -iin="${exome_file_dir}/${data_field}_c${i}_b0_v1.bed" \
    -iin="${exome_file_dir}/${data_field}_c${i}_b0_v1.bim" \
    -iin="${exome_file_dir}/${data_field}_c${i}_b0_v1.fam" \
    -iin="${data_file_dir}/WES_c${i}_snps_qc_pass.snplist" \
-   -iin="${txt_file_dir}/phenotypes.v08-01-22.txt" \
-   -iin="${txt_file_dir}/covariates.v08-01-22.txt" \
+   -iin="${txt_file_dir}/${phenotype_file}" \
+   -iin="${txt_file_dir}/${covariates_file}" \
    -icmd="${run_plink_imp}" --tag="plink" --instance-type "mem1_ssd1_v2_x16"\
-   --destination="${project}:/data/ap_wes_gwas/plink/" --brief --yes
+   --destination="${project}:/data/cp_wes_plink/" --brief --yes
 
 done
 
 # now run chrX
 
   run_plink_imp="plink2 --bfile "${data_field}_cX_b0_v1" --1 \
-      --extract WES_cX_snps_qc_pass.snplist \
-      --pheno phenotypes.v08-01-22.txt --pheno-name AP \
-      --covar covariates.v08-01-22.txt --covar-name age,bmi,smoke,pca1-pca6 \
-      --logistic sex hide-covar --out ${data_field}_AP_cX_v1"
+      --extract WES_cX_snps_qc_pass.snplist --neg9-pheno-really-missing \
+      --pheno ${phenotype_file} --pheno-name CP \
+      --covar ${covariates_file} --covar-name age,bmi,smoke,pca1-pca6 \
+      --logistic sex hide-covar --out ${data_field}_CP_cX_v1"
 
   dx run swiss-army-knife -iin="${exome_file_dir}/${data_field}_cX_b0_v1.bed" \
    -iin="${exome_file_dir}/${data_field}_cX_b0_v1.bim" \
    -iin="${exome_file_dir}/${data_field}_cX_b0_v1.fam" \
    -iin="${data_file_dir}/WES_cX_snps_qc_pass.snplist" \
-   -iin="${txt_file_dir}/phenotypes.v08-01-22.txt" \
-   -iin="${txt_file_dir}/covariates.v08-01-22.txt" \
+   -iin="${txt_file_dir}/${phenotype_file}" \
+   -iin="${txt_file_dir}/${covariates_file}" \
    -icmd="${run_plink_imp}" --tag="plink" --instance-type "mem1_ssd1_v2_x16"\
-   --destination="${project}:/data/ap_wes_gwas/plink/" --brief --yes
+   --destination="${project}:/data/cp_wes_plink/" --brief --yes
 

@@ -36,12 +36,14 @@
 exome_file_dir="/Bulk/Exome sequences/Population level exome OQFE variants, PLINK format - final release/"
 #set this to the exome data field for your release
 data_field="ukb23158"
-data_file_dir="/data/ap_wes_gwas/"
+# where you want the filtered data to be writtenn to
+data_file_dir="/data/wes_gwas/"
 txt_file_dir="/gwas_cohort_textfiles/"
+phenotype_file="phenotypes.v04-24-25.txt"
 
 for i in {1..22}; do
     run_plink_wes="plink2 --bfile ${data_field}_c${i}_b0_v1\
-      --no-pheno --keep phenotypes.v08-04-22.txt \
+      --no-pheno --keep ${phenotype_file} \
       --maf 0.0005 --mac 20 --geno 0.1 --mind 0.1 --max-maf 0.9995 \
       --write-snplist --write-samples --no-id-header\
       --out WES_c${i}_snps_qc_pass"
@@ -49,14 +51,14 @@ for i in {1..22}; do
     dx run swiss-army-knife -iin="${exome_file_dir}/${data_field}_c${i}_b0_v1.bed" \
      -iin="${exome_file_dir}/${data_field}_c${i}_b0_v1.bim" \
      -iin="${exome_file_dir}/${data_field}_c${i}_b0_v1.fam"\
-     -iin="${txt_file_dir}/phenotypes.v08-04-22.txt" \
+     -iin="${txt_file_dir}/${phenotype_file}" \
      -icmd="${run_plink_wes}" --tag="Step2" --instance-type "mem1_ssd1_v2_x16"\
-     --destination="${project}:/data/ap_wes_gwas/" --brief --yes
+     --destination="${project}:${data_file_dir}" --brief --yes
 done
 
 
     run_plink_wes="plink2 --bfile ${data_field}_cX_b0_v1\
-      --no-pheno --keep phenotypes.v08-04-22.txt \
+      --no-pheno --keep ${phenotype_file} \
       --maf 0.0005 --mac 20 --geno 0.1  --mind 0.1 --max-maf 0.9995 \
       --write-snplist --write-samples --no-id-header\
       --out WES_cX_snps_qc_pass"
@@ -64,7 +66,7 @@ done
     dx run swiss-army-knife -iin="${exome_file_dir}/${data_field}_cX_b0_v1.bed" \
      -iin="${exome_file_dir}/${data_field}_cX_b0_v1.bim" \
      -iin="${exome_file_dir}/${data_field}_cX_b0_v1.fam"\
-     -iin="${txt_file_dir}/phenotypes.v08-04-22.txt" \
+     -iin="${txt_file_dir}/${phenotype_file}" \
      -icmd="${run_plink_wes}" --tag="Step2" --instance-type "mem1_ssd1_v2_x16"\
-     --destination="${project}:/data/ap_wes_gwas/" --brief --yes
+     --destination="${project}:${data_file_dir}" --brief --yes
 

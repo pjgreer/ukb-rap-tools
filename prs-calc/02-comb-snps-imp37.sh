@@ -49,7 +49,7 @@ txt_file_dir="/prs_textfiles/"
 #prsfile="ex_prsfile.txt"
 #scorefile="scorefile.txt"
 
-prsout="pgs002264_pdac"
+prsout="pgs002264_PDAC"
 prsfile="PGS002264_PDAC_GRCh37.txt"
 scorefile="pgs002264_scorefile.txt"
 

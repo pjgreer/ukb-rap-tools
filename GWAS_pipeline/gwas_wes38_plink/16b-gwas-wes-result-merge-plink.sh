@@ -32,13 +32,13 @@
 #       transform to tab delimited with tr
 #       save it into $out_file
 
-data_file_dir="/data/ap_wes_gwas/plink/"
+data_file_dir="/data/cp_wes_plink/"
 
 merge_cmd='out_file="assoc.log.plink.merged.txt"
 
 echo -e "CHROM\tPOS\tID\tREF\tALT\tA1\tFIRTH\tTEST\tOBS_CT\tOR\tLOG(OR)_SE\tZ_STAT\tP\tERRCODE" > $out_file
 
-files="/mnt/project/data/ap_wes_gwas/plink/*.hybrid"
+files="/mnt/project/data/cp_wes_plink/*.hybrid"
 for f in $files
 do
    tail -n+2 $f | tr " " "\t" >> $out_file
@@ -46,6 +46,6 @@ done '
 
 
 
-dx run swiss-army-knife -iin="/${data_file_dir}/ukb23158_AP_c13_v1.AP.glm.logistic.hybrid" \
+dx run swiss-army-knife -iin="/${data_file_dir}/ukb23158_CP_c13_v1.CP.glm.logistic.hybrid" \
    -icmd="${merge_cmd}" --tag="Step1" --instance-type "mem1_ssd1_v2_x16"\
-   --destination="${project}:/data/ap_wes_gwas/plink/" --brief --yes 
+   --destination="${project}:/data/cp_wes_plink/" --brief --yes 
