@@ -6,7 +6,7 @@ Unless stated otherwise, these scripts will be executed on your local machine.
 
 ## Prerequisites:
 1. Base prerequisites from the main folder of this repo: https://github.com/pjgreer/ukb-rap-tools
-2. Create directories for prs text files /prs_testfiles and output data /data/imp37_prsfiles
+2. Create directories for prs text files /prs_textfiles and output data /data/imp37_prsfiles
 3. PRS file in same format as ex_prsfile.txt as seen in the example-prs-inputs folder
 4. From that PRS file you can easily create the other three files
 ```

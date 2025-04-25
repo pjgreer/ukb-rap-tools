@@ -32,14 +32,14 @@
 #       transform to tab delimited with tr
 #       save it into $out_file
 
-data_file_dir="/data/cp_wes_plink/"
+data_file_dir="/data/cp_wgs_plink/"
 
 merge_cmd='out_file="assoc.log.plink.merged.txt"
 
 # New version of plink has new header for glm results
 echo -e "CHROM\tPOS\tID\tREF\tALT\tPROVISIONAL_REF?\tA1\tOMITTED\tA1_FREQ\tFIRTH?\tTEST\tOBS_CT\tOR\tLOG(OR)_SE\tZ_STAT\tP\tERRCODE" > $out_file
 
-files="/mnt/project/data/cp_wes_plink/*.hybrid"
+files="/mnt/project/data/cp_wgs_plink/*.hybrid"
 for f in $files
 do
    tail -n+2 $f | tr " " "\t" >> $out_file
@@ -47,6 +47,6 @@ done '
 
 
 
-dx run swiss-army-knife -iin="/${data_file_dir}/ukb23158_CP_c13_v1.CP.glm.logistic.hybrid" \
-   -icmd="${merge_cmd}" --tag="Step1" --instance-type "mem1_ssd1_v2_x16"\
-   --destination="${project}:/data/cp_wes_plink/" --brief --yes 
+dx run swiss-army-knife -iin="/${data_file_dir}/ukb24308_CP_c13_v1.CP.glm.logistic.hybrid" \
+   -icmd="${merge_cmd}" --tag="combine-results" --instance-type "mem1_ssd1_v2_x16"\
+   --destination="${project}:/data/cp_wgs_plink/" --brief --yes 
