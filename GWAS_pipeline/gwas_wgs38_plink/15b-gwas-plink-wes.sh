@@ -44,7 +44,7 @@ covariates_file="covariates.v04-24-25.txt"
 
 for i in {1..22}; do
 
-  run_plink_wgs="plink2 --bfile ${data_field}_c${i}_b0_v1 --1 \
+  run_plink_wgs="plink2 --pfile ${data_field}_c${i}_b0_v1 --1 \
       --extract WGS_c${i}_snps_qc_pass.snplist --neg9-pheno-really-missing \
       --pheno ${phenotype_file} --pheno-name CP \
       --covar ${covariates_file} --covar-name age,bmi,smoke,pca1-pca6 \
@@ -64,7 +64,7 @@ done
 
 # now run chrX
 
-  run_plink_wgs="plink2 --bfile "${data_field}_cX_b0_v1" --1 \
+  run_plink_wgs="plink2 --pfile "${data_field}_cX_b0_v1" --1 \
       --extract WGS_cX_snps_qc_pass.snplist --neg9-pheno-really-missing \
       --pheno ${phenotype_file} --pheno-name CP \
       --covar ${covariates_file} --covar-name age,bmi,smoke,pca1-pca6 \

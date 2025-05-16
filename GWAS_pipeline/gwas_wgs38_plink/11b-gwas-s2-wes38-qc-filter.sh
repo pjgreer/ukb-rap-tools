@@ -44,7 +44,7 @@ txt_file_dir="/gwas_cohort_textfiles/"
 phenotype_file="phenotypes.v04-24-25.txt"
 
 for i in {1..22}; do
-    run_plink_wgs="plink2 --bfile ${data_field}_c${i}_b0_v1\
+    run_plink_wgs="plink2 --pfile ${data_field}_c${i}_b0_v1\
       --no-pheno --keep ${phenotype_file} \
       --maf 0.0005 --mac 20 --geno 0.1 --mind 0.1 --max-maf 0.9995 \
       --write-snplist --write-samples --no-id-header\
@@ -59,7 +59,7 @@ for i in {1..22}; do
 done
 
 
-    run_plink_wgs="plink2 --bfile ${data_field}_cX_b0_v1\
+    run_plink_wgs="plink2 --pfile ${data_field}_cX_b0_v1\
       --no-pheno --keep ${phenotype_file} \
       --maf 0.0005 --mac 20 --geno 0.1  --mind 0.1 --max-maf 0.9995 \
       --write-snplist --write-samples --no-id-header\

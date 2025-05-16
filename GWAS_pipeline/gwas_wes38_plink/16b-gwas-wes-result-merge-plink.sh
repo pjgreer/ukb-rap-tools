@@ -34,7 +34,7 @@
 
 data_file_dir="/data/cp_wes_plink/"
 
-merge_cmd='out_file="assoc.log.plink.merged.txt"
+merge_cmd='out_file="CP.assoc.log.plink.merged.txt"
 
 # New version of plink has new header for glm results
 echo -e "CHROM\tPOS\tID\tREF\tALT\tPROVISIONAL_REF?\tA1\tOMITTED\tA1_FREQ\tFIRTH?\tTEST\tOBS_CT\tOR\tLOG(OR)_SE\tZ_STAT\tP\tERRCODE" > $out_file
